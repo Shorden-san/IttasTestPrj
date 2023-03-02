@@ -21,7 +21,6 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{%url 'add'%}">Add</a>
-
         </li>
       </ul>
     </div>
@@ -29,9 +28,65 @@
 </nav>
       <div class="card">
         <div class="card_body">
+          <h5 class="card_title">Search</h5>
+          <p class="card_text">
+            <div class="row">
+              <div class="col-6">
+                <form action="" method="get">
+                  <div class="form-group form-row">
+                    <div class="col-10">
+                      <input type="text" class="form-control" name="search_info" placeholder="Search by name">
+                      <input type="hidden" name="search_by" value="name">
+                    </div>
+                    <div class="col-2">
+                      <button type="submit" class="btn btn-success"> Search </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+              <div class="col-6">
+                <form action="" method="get">
+                  <div class="form-group form-row">
+                    <div class="col-10">
+                      <input type="text" class="form-control" name="search_info" placeholder="Search by phone">
+                      <input type="hidden" name="search_by" value="phone">
+                    </div>
+                    <div class="col-2">
+                      <button type="submit" class="btn btn-success"> Search </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+      </div>
+
+      <div class="card">
+        <div class="card_body">
         <h5 class="card_title">Phones</h5>
-        <h6 class="card_subtitle">Subtitle</h6>
-        <p class="card_text">{{ person }}</p>
+        <h6 class="card_subtitle">{{ search_message }}</h6>
+        <p class="card_text">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope='col'>#</th>
+                <th scope='col'>Name</th>
+                <th scope='col'>Phones</th>
+                <th scope='col'>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+             {% for person in person %}
+              <tr>
+                <th scope="row">{{ person.id }}</th>
+                <th>{{ person.name }}</th>
+                <th>{{ person.all_phones_row }}</th>
+                <th><a href="{% url 'delete' person.pk %}"class="btn btn-sm btn-danger">Delete</a></th>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </p>
         </div>
       </div>
     </div>

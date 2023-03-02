@@ -9,6 +9,9 @@ class Person(models.Model):
     def __str__(self):
         return self.name
 
+    def all_phones_row(self):
+        return ", ".join([number.number for number in self.phones.all()])
+
 
 class Phone(models.Model):
     number = models.CharField(max_length=16) #+375 37 5375375
