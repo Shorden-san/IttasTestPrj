@@ -81,7 +81,10 @@
                 <th scope="row">{{ person.id }}</th>
                 <th>{{ person.name }}</th>
                 <th>{{ person.all_phones_row }}</th>
-                <th><a href="{% url 'delete' person.pk %}"class="btn btn-sm btn-danger">Delete</a></th>
+                <th>
+                  <a href="{% url 'delete' person.pk %}"class="btn btn-sm btn-danger">Delete</a>
+                  <a href="{% url 'update' person.pk %}"class="btn btn-sm btn-success">Update</a>
+                </th>
               </tr>
             {% endfor %}
             </tbody>

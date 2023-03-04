@@ -14,7 +14,7 @@ class Person(models.Model):
 
 
 class Phone(models.Model):
-    number = models.CharField(max_length=16) #+375 37 5375375
+    number = models.CharField(max_length=16)
     person_id = models.ForeignKey(Person, on_delete=models.CASCADE, default=0, related_name="phones")
 
     def __str__(self):

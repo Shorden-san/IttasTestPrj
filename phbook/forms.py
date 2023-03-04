@@ -11,3 +11,4 @@ class CreatePerson(forms.ModelForm):
             'name',
             'phones'
         }
+
