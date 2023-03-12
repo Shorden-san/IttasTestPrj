@@ -50,20 +50,20 @@ class DeletePhoneView(DeleteView):
 
 
 class UpdatePhoneView(UpdateView):
-    model = models.Person
+    model = models.Phone
     template_name = 'phbook/update_person.html'
-    fields = ['name']
+    fields = ['number']
 
-    def update_name(request, pk):
-     name = Person.objects.get(id=pk)
-     return render(request, 'update_person.html', {'name': name})
+     # def update_phone(request, pk):
+     #    number = Phone.person_id.objects.get(id=pk)
+     #    return render(request, 'update_person.html', {'number': number})
 
-    def update(request, pk):
-        name = Person.objects.get(id=pk)
-        form = CreatePerson(request.POST, instance=name)
+    def update_number(self, request, pk):
+        number = Phone.number.objects.get(person_id=pk)
+        form = CreatePerson(request.POST, instance=number)
         if form.is_valid():
             form.save()
             return redirect('home')
-        return render(request, 'update_person.html', {'name': name})
+        return render(request, 'update_person.html', {'number': number})
 
 

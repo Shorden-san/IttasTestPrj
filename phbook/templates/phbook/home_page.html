@@ -70,17 +70,18 @@
             <thead>
               <tr>
                 <th scope='col'>#</th>
+                <th scope='col'>Number</th>
                 <th scope='col'>Name</th>
-                <th scope='col'>Phones</th>
                 <th scope='col'>Actions</th>
               </tr>
             </thead>
             <tbody>
              {% for person in person %}
               <tr>
-                <th scope="row">{{ person.id }}</th>
+                <th scope="row">{{ person.all_phones_id_row }}</th>
+                <th>{{ person.all_phones_row }}
+                </th>
                 <th>{{ person.name }}</th>
-                <th>{{ person.all_phones_row }}</th>
                 <th>
                   <a href="{% url 'delete' person.pk %}"class="btn btn-sm btn-danger">Delete</a>
                   <a href="{% url 'update' person.pk %}"class="btn btn-sm btn-success">Update</a>

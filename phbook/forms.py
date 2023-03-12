@@ -10,5 +10,6 @@ class CreatePerson(forms.ModelForm):
         fields = {
             'name',
             'phones'
+
         }
 
