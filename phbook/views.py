@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, DeleteView, UpdateView
 from . import forms, models
+from .models import Person
 
 
 class home_page(TemplateView):
@@ -37,7 +38,8 @@ class DeletePhoneView(DeleteView):
     success_url = reverse_lazy('home')
 
 
-class UpdatePhoneView(CreateView):
-    template_name = 'phbook/update_person.html'
-    form_class = forms.UpdatePerson
+class UpdatePhoneView(UpdateView):
+    model = Person
+    fields = ['number']
+    template_name_suffix = '_update_form'
     success_url = reverse_lazy('home')
