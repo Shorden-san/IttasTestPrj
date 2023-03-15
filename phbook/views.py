@@ -1,13 +1,8 @@
-
-from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, DeleteView, UpdateView
 from . import forms, models
-from .forms import CreatePerson
-from .models import Phone, Person
 
 
-# Create your views here.
 class home_page(TemplateView):
     template_name = 'phbook/home_page.html'
 
@@ -16,12 +11,11 @@ class home_page(TemplateView):
         search_by = self.request.GET.get('search_by')
         search_info = self.request.GET.get('search_info')
         search_message = "All phones"
-        if search_by in ['phone', 'name'] and search_info:
+        if search_by in ['number', 'name'] and search_info:
             if search_by == 'name':
                 person = models.Person.objects.filter(name=search_info)
             else:
-                person = models.Person.objects.filter(
-                    phones__number__startswith=search_info)  # лучше сделать строгую фильтрацию
+                person = models.Person.objects.filter(number=search_info)
             search_message = f"Sorted by {search_by}, element {search_info}"
             context['search_message'] = search_message
             context['person'] = person
@@ -36,12 +30,6 @@ class AddPhoneView(CreateView):
     form_class = forms.CreatePerson
     success_url = reverse_lazy('home')
 
-    def get_success_url(self) -> str:
-        phone_numbers = self.request.POST.get('phones')
-        for phone_number in phone_numbers.split('\n'):
-            models.Phone.objects.create(number=phone_number, person_id=self.object)
-        return super().get_success_url()
-
 
 class DeletePhoneView(DeleteView):
     model = models.Person
@@ -49,21 +37,7 @@ class DeletePhoneView(DeleteView):
     success_url = reverse_lazy('home')
 
 
-class UpdatePhoneView(UpdateView):
-    model = models.Phone
+class UpdatePhoneView(CreateView):
     template_name = 'phbook/update_person.html'
-    fields = ['number']
-
-     # def update_phone(request, pk):
-     #    number = Phone.person_id.objects.get(id=pk)
-     #    return render(request, 'update_person.html', {'number': number})
-
-    def update_number(self, request, pk):
-        number = Phone.number.objects.get(person_id=pk)
-        form = CreatePerson(request.POST, instance=number)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-        return render(request, 'update_person.html', {'number': number})
-
-
+    form_class = forms.UpdatePerson
+    success_url = reverse_lazy('home')

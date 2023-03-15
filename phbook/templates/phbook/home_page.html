@@ -49,8 +49,8 @@
                 <form action="" method="get">
                   <div class="form-group form-row">
                     <div class="col-10">
-                      <input type="text" class="form-control" name="search_info" placeholder="Search by phone">
-                      <input type="hidden" name="search_by" value="phone">
+                      <input type="text" class="form-control" name="search_info" placeholder="Search by number">
+                      <input type="hidden" name="search_by" value="number">
                     </div>
                     <div class="col-2">
                       <button type="submit" class="btn btn-success"> Search </button>
@@ -78,8 +78,8 @@
             <tbody>
              {% for person in person %}
               <tr>
-                <th scope="row">{{ person.all_phones_id_row }}</th>
-                <th>{{ person.all_phones_row }}
+                <th scope="row">{{ person.pk }}</th>
+                <th>{{ person.number }}
                 </th>
                 <th>{{ person.name }}</th>
                 <th>
