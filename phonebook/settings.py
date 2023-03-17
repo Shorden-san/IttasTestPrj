@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'phonebook.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'phbook',
+        'NAME': 'phbook2',
         'USER': 'macbook',
         'PASSWORD': '0529',
         'HOST': '127.0.0.1',

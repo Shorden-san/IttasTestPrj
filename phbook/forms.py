@@ -4,12 +4,11 @@ from . import models
 
 
 class CreatePerson(forms.ModelForm):
-    phones = forms.CharField(widget=forms.Textarea(), help_text="separated by new line '\n'")
+    phones = forms.CharField()
     class Meta:
         model = models.Person
         fields = {
             'name',
             'phones'
-
         }
 
