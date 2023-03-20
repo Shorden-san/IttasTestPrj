@@ -5,6 +5,7 @@ from . import models
 
 class CreatePerson(forms.ModelForm):
     phones = forms.CharField()
+
     class Meta:
         model = models.Person
         fields = {
